@@ -1,0 +1,9 @@
+*.db
+*.xlsx
+*.csv
+__pycache__/
+.env
+
+!disease_keyword_tate/*.csv
+.DS_Store
+data/

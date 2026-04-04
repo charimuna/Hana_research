@@ -1,0 +1,1 @@
+disease_keyword.xlsxのファイルに疾患名、疾患群を作って、 パワークリエを使用して縦待ち(正規化）にして、CSVでdesase_keyword_tate.csvした。(2026/3/31)
