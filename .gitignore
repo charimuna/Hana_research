@@ -1,9 +1,34 @@
-*.db
-*.xlsx
-*.csv
+# mac
+.DS_Store
+
+# python
 __pycache__/
+*.pyc
+
+# env
 .env
 
+# DB
+*.db
+
+# Excel
+*.xlsx
+
+# -----------------
+# データ管理（重要）
+# -----------------
+
+# rawデータは除外
+data/raw/
+
+# 中間生成物
+data/intermediate/
+
+# 一時ファイル
+*.log
+*.tmp
+
+# -----------------
+# 辞書は必ず残す
+# -----------------
 !disease_keyword_tate/*.csv
-.DS_Store
-data/
