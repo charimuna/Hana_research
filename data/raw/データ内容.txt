@@ -1,0 +1,12 @@
+AllKarte...2015.4.1～2025.10.31までの全ての診療データ(訪看やその他含む)
+
+FirstSamari...初診時サマリ関係のフォルダ。患者は2025.12月末初診まで
+　├out_pdfs...サマリーPDF原本が入ったフォルダ。
+　├pdf_summary.csv...out_pdfsをすべてCSV化したもの。
+　├extraction_result_long_full.csv...サマリーの内容を病名、薬剤、HDSR、EFごとのデータに分けたもの
+※初診時サマリDLのためのスクリプトも同梱。説明書あり(コード説明書.md)
+
+NowSamari...現在(2025.11.22時点)のサマリ入りフォルダ
+　├patient_data(6).csv...2025.11.22時点での全カルテサマリーデータ
+　├patient_data (6)_filtered.csv...上記のカルテデータから往診患者、必要項目を取り出したもの
+　└csvoutput.py...上記の処理を行うコード。説明書あり
