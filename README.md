@@ -9,19 +9,12 @@ Hana_research/
 ## Data Preparation
 
 Place original data files in:/Users/muna/Hana_research/data/db/Hana_Research.db
-HOT導入については，　/Users/muna/Hana_research/data/derived/HOT_date_tate.csv　がデータ元で　
+HOT導入については，　/Users/muna/Hana_research/data/derived/HOT_date_tate.csv　がデータ元で　/Users/muna/Hana_research/src/at_end_HOT_to_table.py　でHOT最後まで導入をdbのテーブルにいれている
+/Users/muna/Hana_research/src/unex_1281data_to_db.py　で　1281例の症例をdbにいれている
+
 data/raw/　
-
-## Workflow　きちんと入れていく
-
-Step 1. Create database
-
-python src/create_db.py　
-
-Step 2. Process data
-
-python src/process_data.py
+/Users/muna/Hana_research/data/processed/予期せぬ死亡_n1281_脳血.csv
 
 Step 3. Run analysis
-
-python src/analysis.py
+/Users/muna/Hana_research/src/unex_study_table1.py
+/Users/muna/Hana_research/src/unex_study_figure2.py
