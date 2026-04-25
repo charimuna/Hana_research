@@ -48,3 +48,13 @@ output/
 
 # 念のため
 Applications/
+
+# DB
+data/db/
+
+# データ
+*.csv
+*.zip
+
+# 図
+*.pdf
