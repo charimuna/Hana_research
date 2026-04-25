@@ -5,3 +5,23 @@ Hana_research/
 │   └── db/                 # SQLite データベース
 ├── src/                    # データ処理・DB構築用スクリプト
 └── README.md               # 本ファイル
+
+## Data Preparation
+
+Place original data files in:/Users/muna/Hana_research/data/db/Hana_Research.db
+
+data/raw/　
+
+## Workflow　きちんと入れていく
+
+Step 1. Create database
+
+python src/create_db.py　
+
+Step 2. Process data
+
+python src/process_data.py
+
+Step 3. Run analysis
+
+python src/analysis.py

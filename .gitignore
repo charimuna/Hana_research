@@ -4,32 +4,47 @@
 .DS_Store
 __pycache__/
 *.pyc
-.env
 
 # -----------------
-# データ系（全部除外）
+# 仮想環境 / IDE
 # -----------------
-raw/*
-processed/*
-derived/*
-db/*
-output/*
+.venv/
+venv/
+env/
+.vscode/
 
 # -----------------
-# 例外（必要最小限）
+# データ
 # -----------------
+raw/
+processed/
+derived/
+db/
 
-# 論文用アウトプットのみ残す
-!output/*.csv
+# -----------------
+# 出力
+# -----------------
+output/
 
-# スキーマなど
+# 論文用のみ
+!output/paper_tables/
+
+# -----------------
+# 例外
+# -----------------
 !db/schema.sql
-
-# 辞書（重要なら）
 !disease_keyword_tate/*.csv
 
 # -----------------
-# 一時ファイル
+# 一時
 # -----------------
 *.log
 *.tmp
+
+# アプリ・インストーラ
+*.dmg
+*.pkg
+*.app
+
+# 念のため
+Applications/
