@@ -9,7 +9,7 @@ Hana_research/
 ## Data Preparation
 
 Place original data files in:/Users/muna/Hana_research/data/db/Hana_Research.db
-
+HOT導入については，　/Users/muna/Hana_research/data/derived/HOT_date_tate.csv　がデータ元で　
 data/raw/　
 
 ## Workflow　きちんと入れていく
