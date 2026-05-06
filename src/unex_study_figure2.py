@@ -62,7 +62,7 @@ ax.text(0.95, 0.95, 'P for trend < 0.001', transform=ax.transAxes,
         ha='right', va='top', fontsize=9, fontstyle='italic')
 
 # ---------- 軸の設定 ----------
-labels = ["Low (0–1)", "Intermediate (2–3)", "High (4–6)"]
+labels = ["Low (≤0)", "Intermediate (1-2)", "High (≥3)"]
 ax.set_xticks(x)
 ax.set_xticklabels(labels, fontsize=9)
 ax.set_ylabel("Unexpected death (%)", fontsize=10)
