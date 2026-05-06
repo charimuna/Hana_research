@@ -25,16 +25,24 @@ print(df.columns.tolist())
 # === 3. 必要列抽出 ===
 df = df[["患者ID", "作成日", "書類名", "内容"]]
 
-# === 4. 日付変換（Excel対策込み）===
-if df["作成日"].astype(str).str.match(r"^\d+$").all():
+# === 4. 日付変換（YYYYMMDD形式対応）===
+date_str = df["作成日"].astype(str).str.strip()
+
+if date_str.str.match(r"^\d{8}$").all():
+    # YYYYMMDD形式（例: 20240115 → 2024-01-15）
+    df["作成日"] = pd.to_datetime(date_str, format="%Y%m%d", errors="coerce")
+
+elif date_str.str.match(r"^\d{5}$").all():
+    # Excelシリアル値（5桁の数字）
     df["作成日"] = pd.to_datetime(
-        df["作成日"],
+        date_str.astype(int),
         origin="1899-12-30",
         unit="D",
         errors="coerce"
     )
 else:
-    df["作成日"] = pd.to_datetime(df["作成日"], errors="coerce")
+    # その他（ISO形式など）
+    df["作成日"] = pd.to_datetime(date_str, errors="coerce")
 
 df["作成日"] = df["作成日"].dt.strftime("%Y-%m-%d")
 
