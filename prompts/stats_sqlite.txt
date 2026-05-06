@@ -1,0 +1,13 @@
+Write Python code using pandas and sqlite3 to:
+
+- connect to SQLite database at: /Users/muna/Hana_research/data/db/Hana_Research.db
+- load table: unex_study
+- group by: unex_death (0 vs 1)
+- calculate mean and standard deviation of a specified column
+- handle missing values properly
+- output results as a pandas DataFrame
+
+Requirements:
+- Use exact column names
+- Provide complete executable code
+- No placeholders

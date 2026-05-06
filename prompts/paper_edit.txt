@@ -1,0 +1,11 @@
+Revise the following text for a medical research article.
+
+Requirements:
+- Follow ICMJE recommendations
+- Use formal academic English
+- Be concise and precise
+- Do not add new data or assumptions
+- Maintain original meaning
+
+Show:
+- Revised sentence only
