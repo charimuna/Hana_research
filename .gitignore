@@ -58,3 +58,7 @@ data/db/
 
 # 図
 *.pdf
+
+# ORCAからのデータフォルダを丸ごと除外
+/data/ORCAから処方/
+/data/ORCAから病名/
