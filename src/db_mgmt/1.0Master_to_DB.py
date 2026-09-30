@@ -3,8 +3,10 @@ import sqlite3
 import re
 from datetime import datetime
 
+# ===== 説明　nowsama から患者取り込み，初診日が入っている症例　
+
 # ===== パス =====
-csv_path = "/Users/muna/Hana_research/data/raw/NowSamari/patient_data_20260419.csv"
+csv_path = "/Users/muna/Hana_research/data/raw/NowSamari/patient_data_20260914.csv"
 db_path = "/Users/muna/Hana_research/data/db/Hana_Research.db"
 
 # ===== 和暦 → 西暦変換 =====
@@ -95,6 +97,7 @@ df = df.dropna(subset=["Age_at_Visit"])
 
 # 型
 df["患者ID"] = df["患者ID"].astype(int)
+df = df[(df["患者ID"] >= 150001) & (df["患者ID"] < 500000)]
 
 # ===== DB接続 =====
 conn = sqlite3.connect(db_path)
