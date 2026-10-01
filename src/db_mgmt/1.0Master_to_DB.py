@@ -6,7 +6,7 @@ from datetime import datetime
 # ===== 説明　nowsama から患者取り込み，初診日が入っている症例　
 
 # ===== パス =====
-csv_path = "/Users/muna/Hana_research/data/raw/NowSamari/patient_data_20260914.csv"
+csv_path = "/Users/muna/Hana_research/data/raw/NowSamari/patient_data_20261001.csv"
 db_path = "/Users/muna/Hana_research/data/db/Hana_Research.db"
 
 # ===== 和暦 → 西暦変換 =====

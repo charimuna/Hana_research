@@ -2,7 +2,7 @@ import sqlite3
 import pandas as pd
 
 db_path = "/Users/muna/Hana_research/data/db/Hana_Research.db"
-csv_path = "/Users/muna/Hana_research/data/raw/NowSamari/patient_data_20260914.csv"
+csv_path = "/Users/muna/Hana_research/data/raw/NowSamari/patient_data_20261001.csv"
 MIN_PATIENT_ID = 150001   # 以上を対象
 MAX_PATIENT_ID = 500000   # 未満を対象(500000以上は除外)
 
