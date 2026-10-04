@@ -10,7 +10,7 @@ import pandas as pd
 # =========================
 # settings
 # =========================
-CSV_PATH = "/Users/muna/Hana_research/data/raw/NowSamari/patient_data_20260914.csv"
+CSV_PATH = "/Users/muna/Hana_research/data/raw/NowSamari/patient_data_20261001.csv"
 LINKAGE_DB = "/Volumes/linkage_secure/hana_linkage.db"
 
 MIN_PATIENT_ID = 150001   # 以上を対象
