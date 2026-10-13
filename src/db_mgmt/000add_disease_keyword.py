@@ -2,7 +2,7 @@ import sqlite3
 import pandas as pd
 from pathlib import Path
 
-CSV_PATH = Path("/Users/muna/Hana_research/data/derived/disease_keyword_tate.csv")
+CSV_PATH = Path("/Users/muna/Hana_research/data/derived/disease_keyword_tate(update202607).csv")
 DB_PATH  = Path("/Users/muna/Hana_research/data/db/Hana_Research.db")
 
 df = pd.read_csv(CSV_PATH, encoding="utf-8")
