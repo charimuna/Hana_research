@@ -15,7 +15,7 @@ Hana Research: tolvaptan_study に HF / Cancer / CKD / Cirrhosis / HypoNa を 0/
   Cirrhosis : 肝硬変
   HypoNa    : 低Na（SIADHを含む）
 
-追加で、以下9人は Study_ID で照合し、カルテ抽出の結果に関わらず該当列を1にする（OR）。
+追加で、以下10人は Study_ID で照合し、カルテ抽出の結果に関わらず該当列を1にする（OR）。
 Patient_ID は確認用（食い違えば警告。一致しなくても Study_ID を優先して進める）。
   低Na     P866511 170010 -> HypoNa
   心アミロイド P976287 170235 -> HF
@@ -25,6 +25,9 @@ Patient_ID は確認用（食い違えば警告。一致しなくても Study_ID
   ASHF    P026619 200067 -> HF
   がん     P935620 220194 -> Cancer
   がん     P474675 230169 -> Cancer
+  がん     P246501 250238 -> Cancer
+  がん     P951086 230249 -> Cancer
+  上記のうち P246501 / P951086 は、自動抽出で HF=1 になっていても HF を 0 にする（HFを消す）
   ※ 低アルブミン P185844 170266 は4病名のどれにも分類しない（対象外）
 
 使い方
@@ -86,7 +89,7 @@ DISEASE_REGEX = {d: re.compile("|".join(p)) for d, p in DISEASE_PATTERNS.items()
 
 HASH_SEG = re.compile(r"#([^#\r\n]*)")
 
-# ---------------- 手動で追加する9人（Study_ID照合。Patient_IDは確認用） ----------------
+# ---------------- 手動で追加する10人（Study_ID照合。Patient_IDは確認用） ----------------
 MANUAL_FLAGS = [
     # (label, Study_ID, Patient_ID, disease_column)
     ("低Na", "P866511", 170010, "HypoNa"),
@@ -97,7 +100,16 @@ MANUAL_FLAGS = [
     ("ASHF", "P026619", 200067, "HF"),
     ("がん", "P935620", 220194, "Cancer"),
     ("がん", "P474675", 230169, "Cancer"),
+    ("がん", "P246501", 250238, "Cancer"),
+    ("がん", "P951086", 230249, "Cancer"),
     # 低アルブミン P185844 170266 はどの病名にも分類しない（対象外）
+]
+
+# 手動で 0 に戻す（HF を消す）。OR の後に適用する
+# (label, Study_ID, Patient_ID, disease_column)
+MANUAL_CLEARS = [
+    ("がん→HF消去", "P246501", 250238, "HF"),
+    ("がん→HF消去", "P951086", 230249, "HF"),
 ]
 
 
@@ -192,7 +204,7 @@ def build_flags(conn):
 
 
 def apply_manual_flags(flags):
-    """9人の追加フラグを Study_ID で照合して OR する"""
+    """10人の追加フラグを Study_ID で照合して OR する"""
     sid_to_pid = dict(zip(flags["Study_ID"], flags["Patient_ID"]))
     applied, not_found, mismatched = [], [], []
     for label, sid, pid_expected, disease in MANUAL_FLAGS:
@@ -206,6 +218,16 @@ def apply_manual_flags(flags):
         before = int(flags.loc[mask, disease].iloc[0])
         flags.loc[mask, disease] = 1
         applied.append((label, sid, disease, before))
+
+    for label, sid, pid_expected, disease in MANUAL_CLEARS:
+        if sid not in sid_to_pid:
+            print(f"  消去対象 {label} {sid} は tolvaptan_study にありません")
+            continue
+        mask = flags["Study_ID"] == sid
+        before = int(flags.loc[mask, disease].iloc[0])
+        flags.loc[mask, disease] = 0
+        print(f"  - {label:8s} {sid} -> {disease} を 0 にする"
+              f"{'（元々1→0に変更）' if before == 1 else '（元々0。変化なし）'}")
 
     print(f"\n手動追加フラグ: {len(MANUAL_FLAGS)}人指定 / 適用 {len(applied)}人 "
           f"/ tolvaptan_studyに見つからず {len(not_found)}人")
