@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
 """
+【廃止 2026-10-22】このスクリプトは使わない。Study_ID の付与・同期は sync_study_id.py を使う。
+（既定で Patient_ID 150000 の行を削除する仕様があり、対象を絞らない方針と矛盾するため）
+
 Hana Research: 研究DB上の旧 Study_ID を、リンケージDBの新 Study_ID に一括変換する
 
 方針

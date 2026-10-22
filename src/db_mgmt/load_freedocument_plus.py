@@ -38,7 +38,7 @@ df["作成日"] = df["作成日"].dt.strftime("%Y-%m-%d")
 
 # === 5. リネーム ===
 df = df.rename(columns={
-    "患者ID": "Patients_ID",
+    "患者ID": "Patient_ID",
     "作成日": "Date",
     "書類名": "document_type",
     "内容": "text_data"
@@ -57,14 +57,14 @@ conn = sqlite3.connect(DB_PATH)
 
 # 既存テーブルのキーを取得
 existing_keys = pd.read_sql(
-    "SELECT Patients_ID, Date, document_type FROM Freedocument",
+    "SELECT Patient_ID, Date, document_type FROM Freedocument",
     conn
 )
 
 # マージして新規レコードのみ抽出
 merged = df.merge(
     existing_keys,
-    on=["Patients_ID", "Date", "document_type"],
+    on=["Patient_ID", "Date", "document_type"],
     how="left",
     indicator=True
 )
@@ -85,3 +85,5 @@ else:
     print("Done: Freedocument に追記完了。")
 
 conn.close()
+
+print("⚠️ 次に src/db_mgmt/sync_study_id.py を実行して Study_ID を付与してください（まずドライラン、次に --commit）")

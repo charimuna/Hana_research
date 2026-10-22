@@ -120,23 +120,11 @@ def process_columns(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def attach_study_id(df: pd.DataFrame, db_path: str) -> pd.DataFrame:
-    """study_id_linkage テーブルから Study_ID を Patient_ID をキーに付与する"""
-    conn = sqlite3.connect(db_path)
-    try:
-        linkage = pd.read_sql("SELECT Patient_ID, Study_ID FROM study_id_linkage", conn)
-    finally:
-        conn.close()
-
-    # Patient_ID の型を合わせてマージ
-    df["Patient_ID"] = df["Patient_ID"].astype(str)
-    linkage["Patient_ID"] = linkage["Patient_ID"].astype(str)
-
-    before = len(df)
-    df = df.merge(linkage, on="Patient_ID", how="left")
-
-    matched = df["Study_ID"].notna().sum()
-    unmatched = df["Study_ID"].isna().sum()
-    print(f"🔗 Study_ID付与: {matched:,} 件マッチ / {unmatched:,} 件未マッチ（NaN）")
+    """Study_ID 列を空で用意する。
+    付与はリンケージDBを正本とする sync_study_id.py が行う
+    （研究DB内の study_id_linkage は 2026-10-22 に廃止・削除）。"""
+    df["Study_ID"] = None
+    print("🔗 Study_ID: 空で作成（取り込み後に sync_study_id.py で付与）")
 
     # カラム順を整理: Patient_ID の直後に Study_ID を配置
     cols = list(df.columns)
@@ -228,6 +216,7 @@ def main():
     verify_db(DB_PATH, TABLE_NAME)
 
     print("\n✅ すべての処理が完了しました！")
+    print("⚠️ 次に src/db_mgmt/sync_study_id.py を実行して Study_ID を付与してください（まずドライラン、次に --commit）")
 
 
 if __name__ == "__main__":

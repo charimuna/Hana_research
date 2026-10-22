@@ -48,7 +48,7 @@ df["作成日"] = df["作成日"].dt.strftime("%Y-%m-%d")
 
 # === 5. リネーム ===
 df = df.rename(columns={
-    "患者ID": "Patients_ID",
+    "患者ID": "Patient_ID",
     "作成日": "Date",
     "書類名": "document_type",
     "内容": "text_data"
@@ -67,3 +67,4 @@ df.to_sql(
 conn.close()
 
 print("Done: Freedocument created.")
+print("⚠️ 次に src/db_mgmt/sync_study_id.py を実行して Study_ID を付与してください（まずドライラン、次に --commit）")

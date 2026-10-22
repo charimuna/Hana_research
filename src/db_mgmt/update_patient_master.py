@@ -9,10 +9,10 @@ cursor = conn.cursor()
 # 不足IDを追加
 cursor.execute("""
 INSERT INTO Patient_master (Patient_ID)
-SELECT DISTINCT f.Patients_ID
+SELECT DISTINCT f.Patient_ID
 FROM Freedocument f
 LEFT JOIN Patient_master p
-ON f.Patients_ID = p.Patient_ID
+ON f.Patient_ID = p.Patient_ID
 WHERE p.Patient_ID IS NULL
 """)
 

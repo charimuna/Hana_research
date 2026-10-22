@@ -101,7 +101,7 @@ for t in ("Freedocument", "karte", "Patient_Master"):
     assert t in tables, f"テーブルが見つかりません: {t}（DBパスを確認）"
 
 free = pd.read_sql(
-    "SELECT rowid AS rid, Patients_ID AS Patient_ID, Date, text_data FROM Freedocument", conn
+    "SELECT rowid AS rid, Patient_ID, Date, text_data FROM Freedocument", conn
 )
 karte = pd.read_sql(
     "SELECT rowid AS rid, Patient_ID, visit_datetime, karte_text, height FROM karte", conn
