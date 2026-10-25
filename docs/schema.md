@@ -2,7 +2,7 @@
 
 DB: `/Users/muna/Hana_research/data/db/Hana_Research.db`
 
-## Background_summary（4,915行）
+## Background_summary（15,712行）
 
 目的: 
 
@@ -18,6 +18,10 @@ DB: `/Users/muna/Hana_research/data/db/Hana_Research.db`
 | memo | TEXT |  | ここにフリーで色々書いている，既往歴，現病歴が |
 | tag | TEXT |  |  |
 | Study_ID | TEXT |  |  |
+| death_place | TEXT |  | 死亡場所（2026-10-22 追加） |
+| death_comment | TEXT |  | 死亡コメント（2026-10-22 追加） |
+| end_comment | TEXT |  | 終了コメント（2026-10-22 追加） |
+| end_date | TEXT |  | 終了日（2026-10-22 追加） |
 
 ## Freedocument（6,878行）
 
